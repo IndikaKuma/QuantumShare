@@ -1,0 +1,1201 @@
+@prefix : <http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumShare#> .
+@prefix cs: <http://mklab.iti.gr/pericles/ComputerSystem_ODP#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix mls: <http://www.w3.org/ns/mls/cp#> .
+@prefix muo: <http://elite.polito.it/ontologies/muo-vocab.owl#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix parameter: <http://www.semanticweb.org/20173656/ontologies/2022/5/Parameter#> .
+@prefix Publication: <http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#> .
+@prefix quantumshare: <http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumShare#> .
+@prefix Implementation: <http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#> .
+@prefix ProblemExecution: <http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#> .
+@prefix QuantumAlgorithm: <http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#> .
+@prefix cpannotationschema: <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#> .
+@base <http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumShare> .
+
+<http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumShare> rdf:type owl:Ontology ;
+                                                                      dc:creator "J.P.A. Martens" ;
+                                                                      Publication:Intent "To describe quantum computing use cases, by providing the algorithm, implementation, and problem-solving execution of the algorithm." .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasIntent
+cpannotationschema:hasIntent rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Intent
+Publication:Intent rdf:type owl:AnnotationProperty ;
+                   dc:creator "J.P.A. Martens"^^xsd:string ;
+                   dc:date "2022-06-11T12:04:19Z"^^xsd:dateTime .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://elite.polito.it/ontologies/muo-vocab.owl#measuredIn
+muo:measuredIn rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain muo:QualityValue ;
+               rdfs:range <http://elite.polito.it/ontologies/dogont.owl#UnitOfMeasurement> ;
+               rdfs:comment "The unit used in the measurement of a particular quality value"@en ;
+               rdfs:label "Measured in"@en .
+
+
+###  http://mklab.iti.gr/pericles/ComputerSystem_ODP#isCompatibleWith
+cs:isCompatibleWith rdf:type owl:ObjectProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( cs:Hardware
+                                                cs:Software
+                                                <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model>
+                                              )
+                                ] ;
+                    rdfs:range [ rdf:type owl:Class ;
+                                 owl:unionOf ( cs:Hardware
+                                               cs:Software
+                                             )
+                               ] ;
+                    rdfs:comment "able to exist or occur together without problems or conflict"^^xsd:string ;
+                    rdfs:label "is compatible with"^^xsd:string .
+
+
+###  http://mklab.iti.gr/pericles/ComputerSystem_ODP#requiresHardware
+cs:requiresHardware rdf:type owl:ObjectProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( cs:Hardware
+                                                cs:Software
+                                              )
+                                ] ;
+                    rdfs:range cs:Hardware ;
+                    rdfs:comment "a relation between hardware of software, in an implementation, and other hardware."^^xsd:string ;
+                    rdfs:label "requires hardware"^^xsd:string .
+
+
+###  http://mklab.iti.gr/pericles/ComputerSystem_ODP#usesHardware
+cs:usesHardware rdf:type owl:ObjectProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( cs:Hardware
+                                            <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation>
+                                          )
+                            ] ;
+                rdfs:range cs:Hardware ;
+                rdfs:comment "something that uses hardware"^^xsd:string ;
+                rdfs:label "uses hardware"^^xsd:string .
+
+
+###  http://mklab.iti.gr/pericles/ComputerSystem_ODP#usesSoftware
+cs:usesSoftware rdf:type owl:ObjectProperty ;
+                rdfs:domain <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation> ;
+                rdfs:range cs:Software ;
+                rdfs:comment "something that uses software"^^xsd:string ;
+                rdfs:label "uses software"^^xsd:string .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines
+dul:defines rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf dul:isDefinedIn ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( mls:Input
+                                        mls:Output
+                                      )
+                        ] ;
+            rdfs:range dul:Concept ;
+            rdfs:comment "A relation between a Description and a Concept, e.g. a Workflow for a governmental Organization defines the Role 'officer', or 'the Italian Traffic Law defines the role Vehicle'."^^xsd:string ;
+            rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+            rdfs:label "defines"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#executesTask
+dul:executesTask rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf dul:isExecutedIn ;
+                 rdfs:domain dul:Action ;
+                 rdfs:range dul:Task ;
+                 rdfs:comment "A relation between an action and a task, e.g. 'putting some water in a pot and putting the pot on a fire until the water starts bubbling' executes the task 'boiling'."^^xsd:string ;
+                 rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                 rdfs:label "executes task"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#expresses
+dul:expresses rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              owl:inverseOf dul:isExpressedBy ;
+              rdfs:domain dul:InformationObject ;
+              rdfs:range <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model> ;
+              rdfs:comment """A relation between an InformationObject and a 'meaning', generalized here as a 'SocialObject'. For example: 'A Beehive is a structure in which bees are kept, typically in the form of a dome or box.' (Oxford dictionary)'; 'the term Beehive expresses the concept Beehive in my apiculture ontology'.
+The intuition for 'meaning' is intended to be very broad. A separate, large comment is included for those who want to investigate more on what kind of meaning can be represented in what form."""^^xsd:string ,
+                           """This is a large comment field for those who want to investigate the different uses of the 'expresses' relation for modeling different approaches to meaning characterization and modeling.
+For example, in all these cases, some aspect of meaning is involved:
+
+- Beehive means \"a structure in which bees are kept, typically in the form of a dome or box.\" (Oxford dictionary)
+- 'Beehive' is a synonym in noun synset 09218159 \"beehive|hive\" (WordNet)
+- 'the term Beehive can be interpreted as the fact of 'being a beehive', i.e. a relation that holds for concepts such as Bee, Honey, Hosting, etc.'
+- 'the text of Italian apiculture regulation expresses a rule by which beehives should be kept at least one kilometer away from inhabited areas'
+- 'the term Beehive expresses the concept Beehive'
+- ''Beehive' for apiculturists does not express the same meaning as for, say, fishermen'
+- 'Your meaning of 'Beautiful' does not seem to fit mine'
+- ''Beehive' is formally interpreted as the set of all beehives'
+- 'from the term 'Beehive', we can build a vector space of statistically significant cooccurring terms in the documents that contain it'
+- the lexeme 'Belly' expresses the role 'Body_Part' in the frame 'ObservableBodyParts' (FrameNet)
+
+As the examples suggest, the 'meaning of meaning' is dependent on the background approach/theory that one assumes. One can hardly make a summary of the too many approaches and theories of meaning, therefore this relation is maybe the most controversial and difficult to explain; normally, in such cases it would be better to give up formalizing. 
+However, the usefulness of having a 'semantic abstraction' in modeling information objects is so high (e.g. for the semantic web, interoperability, reengineering, etc.), that we accept this challenging task, although without taking any particular position in the debate. 
+We provide here some examples, which we want to generalize upon when using the 'expresses' relation to model semantic aspects of social reality.
+
+In the most common approach, lexicographers that write dictionaries, glossaries, etc. assume that the meaning of a term is a paraphrase (or 'gloss', or 'definition'). 
+Another approach is provided by concept schemes like thesauri and lexicons, which assume that the meaning of a term is a 'concept', encoded as a 'lemma', 'synset', or 'descriptor'.
+Still another approach is that of psychologists and cognitive scientists, which often assume that the meaning of an information object is a concept encoded in the mind or cognitive system of an agent. 
+A radically different approach is taken by social scientists and semioticians, who usually assume that meanings of an information object are spread across the communication practices in which members of a community use that object.
+Another approach that tackles the distributed nature of meaning is assumed by geometrical models of semantics, which assume that the meaning of an InformationObject (e.g. a word) results from the set of informational contexts (e.g. within texts) in which that object is used similarly.
+The logical approach to meaning is still different, since it assumes that the meaning of e.g. a term is equivalent to the set of individuals that the term can be applied to; for example, the meaning of 'Ali' is e.g. an individual person called Ali, the meaning of 'Airplane' is e.g. the set of airplanes, etc. 
+Finally, an approach taken by structuralist linguistics and frame semantics is that a meaning is the relational context in which an information object can be applied; for example, a meaning of 'Airplane' is situated e.g. in the context ('frame') of passenger airline flights.
+
+These different approaches are not necessarily conflicting, and they mostly talk about different aspects of so-called 'semantics'. They can be summarized and modelled within DOLCE-Ultralite as follows (notice that such list is far from exhaustive):
+
+(1) Informal meaning (as for linguistic or commonsense semantics: a distinction is assumed between (informal) meaning and reference; see isAbout for an alternative pattern on reference)
+	- Paraphrase meaning (as for lexicographic semantics). Here it is modelled as the expresses relation between instances of InformationObject and different instances of InformationObject that act as 'paraphrases'
+	- Conceptual meaning (as for 'concept scheme' semantics). Here it is modelled as the expresses relation between instances of InformationObject and instances of Concept
+	- Relational meaning (as for frame semantics). Here it is modelled as the expresses relation between instances of InformationObject and instances of Description
+	- Cognitive meaning (as for 'psychological' semantics). Here it is modelled as the expresses relation between any instance of InformationObject and any different instance of InformationObject that isRealizedBy a mental, cognitive or neural state (depending on which theory of mind is assumed). Such states can be considered here as instances of Process (occurring in the mind, cognitive system, or neural system of an agent)
+	- Cultural meaning (as for 'social science' semantics). Here it is modelled as the expresses relation between instances of InformationObject and instances of SocialObject (institutions, cultural paradigms, norms, social practices, etc.)
+	- Distributional meaning (as for geometrical models of meaning). Here it is modelled as the expresses relation between any instance of InformationObject and any different instance of InformationObject that isFormallyRepresentedIn some (geometrical) Region (e.g. a vector space)
+
+(2) Formal meaning (as for logic and formal semantics: no distinction is assumed between informal meaning and reference, therefore between 'expresses' and 'isAbout', which can be used interchangeably)
+	- Object-level formal meaning (as in the traditional first-order logic semantics). Here it is modelled as the expresses relation between an instance of InformationObject and an instance of Collection that isGroundingFor (in most cases) a Set; isGroundingFor is defined in the ontology: http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl
+	- Modal formal meaning (as in possible-world semantics). Here it is modelled as the expresses relation between an instance of InformationObject and an instance of Collection that isGroundingFor a Set, and which isPartOf some different instance of Collection that isGroundingFor a PossibleWorld
+
+This is only a first step to provide a framework, in which one can model different aspects of meaning. A more developed ontology should approach the problem of integrating the different uses of 'expresses', so that different theories, resources, methods can interoperate."""^^xsd:string ;
+              rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+              rdfs:label "expresses"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParameter
+dul:hasParameter rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf dul:isParameterFor ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( cs:Software
+                                             dul:Concept
+                                             Publication:Publication
+                                             Implementation:Computational_Resource
+                                             mls:Input
+                                           )
+                             ] ;
+                 rdfs:range dul:Parameter ;
+                 rdfs:comment "A Concept can have a Parameter that constrains the attributes that a classified Entity can have in a certain Situation, e.g. a 4WheelDriver Role definedIn the ItalianTrafficLaw has a MinimumAge parameter on the Amount 16."^^xsd:string ;
+                 rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                 rdfs:label "has parameter"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart
+dul:hasPart rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf dul:isPartOf ;
+            rdfs:domain dul:Collection ;
+            rdfs:range [ rdf:type owl:Class ;
+                         owl:unionOf ( ProblemExecution:Problem
+                                       QuantumAlgorithm:Quantum_Algorithm
+                                       Implementation:Acces_Method
+                                       Implementation:Compiler
+                                       Implementation:Library
+                                       Implementation:Local_Simulator
+                                     )
+                       ] ;
+            rdfs:comment """A schematic relation between any entities, e.g. 'the human body has a brain as part', '20th century contains year 1923', 'World War II includes the Pearl Harbour event'.
+
+Parthood should assume the basic properties of mereology: transitivity, antisymmetry, and reflexivity (propert Parthood of course misses reflexivity). 
+However, antisymmetry is not supported in OWL2 explicitly, therefore DUL has to adopt one of two patterns:
+1) dropping asymmetry axioms, while granting reflexivity: this means that symmetry is not enforced, but permitted for the case of reflexivity. Of course, in this way we cannot prevent symmetric usages of hasPart;
+2) dropping the reflexivity axiom, and enforce asymmetry: in this case, we would prevent all symmetric usages, but we loose the possibility of enforcing reflexivity, which is commonsensical in parthood.
+In DUL, we adopt pattern #1 for partOf, and pattern #2 for properPartOf, which seems a good approximation: due to the lack of inheritance of property characteristics, each asymmetric hasPropertPart assertion would also be a reflexive hasPart assertion (reflexive reduction design pattern).
+
+Subproperties and restrictions can be used to specialize hasPart for objects, events, etc."""^^xsd:string ;
+            rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+            rdfs:label "has part"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant
+dul:hasParticipant rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   owl:inverseOf dul:isParticipantIn ;
+                   rdfs:comment "A relation between an object and a process, e.g. 'John took part in the discussion', 'a large mass of snow fell during the avalanche', or 'a cook, some sugar, flour, etc. are all present in the cooking of a cake'."^^xsd:string ;
+                   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                   rdfs:label "has participant"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#involvesAgent
+dul:involvesAgent rdf:type owl:ObjectProperty ;
+                  owl:inverseOf dul:isAgentInvolvedIn ;
+                  rdfs:comment "agent participation"^^xsd:string ;
+                  rdfs:label "involves agent"^^xsd:string .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isAbout
+dul:isAbout rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf dul:isReferenceOf ;
+            rdfs:domain dul:InformationObject ;
+            rdfs:range [ rdf:type owl:Class ;
+                         owl:unionOf ( <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation>
+                                       ProblemExecution:Execution
+                                       QuantumAlgorithm:Quantum_Algorithm
+                                     )
+                       ] ;
+            rdfs:comment """A relation between an information object and an Entity (including information objects). It can be used to talk about entities that are references of proper nouns: the proper noun 'Leonardo da Vinci' isAbout the Person Leonardo da Vinci; as well as to talk about sets of entities that can be described by a common noun: the common noun 'person' isAbout the set of all persons in a domain of discourse, which can be represented in DOLCE-Ultralite as an individual of the class: dul:Collection.
+A specific sentence may use common nouns with either a singular or plural reference, or it can even refer to all possible references (e.g. in a lexicographic definition): all those uses are kinds of aboutness.
+
+The isAbout relation is sometimes considered as reflexive, however this is semiotically inaccurate, because information can be about itself ('de dicto' usage, as in 'John is four character long'), but it is typically about something else ('de re' usage, as in 'John loves Mary').
+If a reflexivity exists in general, it rather concerns its realisation, which is always associated with an event, e.g. an utterance, which makes the information denoting itself, besides its aboutness. This is implemented in DUL with the dul:realizesSelfInformation property, which is used with local reflexivity in the dul:InformationRealization class."""^^xsd:string ;
+            rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+            rdfs:label "is about"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isAgentInvolvedIn
+dul:isAgentInvolvedIn rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:range Implementation:Computational_Resource ;
+                      rdfs:comment "Agent participation in an event or concept"^^xsd:string ;
+                      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                      rdfs:label "is agent involved in"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn
+dul:isDefinedIn rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain dul:Concept ;
+                rdfs:range [ rdf:type owl:Class ;
+                             owl:unionOf ( mls:Input
+                                           mls:Output
+                                         )
+                           ] ;
+                rdfs:comment "A relation between a Description and a Concept, e.g. a Workflow for a governmental Organization defines the Role 'officer', or 'the Italian Traffic Law defines the role Vehicle'."^^xsd:string ;
+                rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                rdfs:label "is defined in"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExecutedIn
+dul:isExecutedIn rdf:type owl:ObjectProperty ;
+                 rdfs:domain dul:Task ;
+                 rdfs:range dul:Action ;
+                 rdfs:comment "A relation between an action and a task, e.g. 'putting some water in a pot and putting the pot on a fire until the water starts bubbling' executes the task 'boiling'."^^xsd:string ;
+                 rdfs:label "is executed in"^^xsd:string .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExpressedBy
+dul:isExpressedBy rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model> ;
+                  rdfs:range dul:InformationObject ;
+                  rdfs:comment """A relation between a dul:SocialObject (the 'meaning') and a dul:InformationObject (the 'expression'). 
+For example: 'A Beehive is a structure in which bees are kept, typically in the form of a dome or box.' (Oxford dictionary)'; 'the term Beehive expresses the concept Beehive in my apiculture ontology'.
+The intuition for 'meaning' is intended to be very broad. A separate, large comment is included in the encoding of 'expresses', for those who want to investigate more on what kind of meaning can be represented in what form."""^^xsd:string ;
+                  rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                  rdfs:label "is expressed by"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isParameterFor
+dul:isParameterFor rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain dul:Parameter ;
+                   rdfs:range [ rdf:type owl:Class ;
+                                owl:unionOf ( cs:Software
+                                              dul:Concept
+                                              Publication:Publication
+                                              Implementation:Computational_Resource
+                                              mls:Input
+                                            )
+                              ] ;
+                   rdfs:comment "A Concept can have a Parameter that constrains the attributes that a classified Entity can have in a certain Situation, e.g. a 4WheelDriver Role definedIn the ItalianTrafficLaw has a MinimumAge parameter on the Amount 16."^^xsd:string ;
+                   rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                   rdfs:label "is parameter for"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isParametrizedBy
+dul:isParametrizedBy rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     owl:inverseOf dul:parametrizes ;
+                     rdfs:domain muo:QualityValue ;
+                     rdfs:range dul:Parameter ;
+                     rdfs:comment "The relation between a Parameter, e.g. 'MajorAge', and a Region, e.g. '>17 year'."^^xsd:string ;
+                     rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                     rdfs:label "is parametrized by"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isPartOf
+dul:isPartOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( ProblemExecution:Problem
+                                         QuantumAlgorithm:Quantum_Algorithm
+                                         Implementation:Acces_Method
+                                         Implementation:Compiler
+                                         Implementation:Library
+                                         Implementation:Local_Simulator
+                                       )
+                         ] ;
+             rdfs:range dul:Collection ;
+             rdfs:comment "A relation between any entities, e.g. 'brain is a part of the human body'. See dul:hasPart for additional documentation."^^xsd:string ;
+             rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+             rdfs:label "is part of"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isParticipantIn
+dul:isParticipantIn rdf:type owl:ObjectProperty ;
+                    rdfs:range ProblemExecution:Execution ;
+                    rdfs:comment "A relation between an object and a process, e.g. 'John took part in the discussion', 'a large mass of snow fell during the avalanche', or 'a cook, some sugar, flour, etc. are all present in the cooking of a cake'."^^xsd:string ;
+                    rdfs:label "is participant in"^^xsd:string .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy
+dul:isRealizedBy rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf dul:realizes ;
+                 rdfs:domain dul:InformationObject ;
+                 rdfs:range [ rdf:type owl:Class ;
+                              owl:unionOf ( dul:Action
+                                            dul:InformationRealization
+                                          )
+                            ] ;
+                 rdfs:comment "A relation between an information realization and an information object, e.g. the paper copy of the Italian Constitution realizes the text of the Constitution."^^xsd:string ;
+                 rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                 rdfs:label "is realized by"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isReferenceOf
+dul:isReferenceOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain [ rdf:type owl:Class ;
+                                owl:unionOf ( <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation>
+                                              ProblemExecution:Execution
+                                              QuantumAlgorithm:Quantum_Algorithm
+                                            )
+                              ] ;
+                  rdfs:range dul:InformationObject ;
+                  rdfs:comment """A relation between information objects and any Entity (including information objects). It can be used to talk about e.g. entities are references of proper nouns: the proper noun 'Leonardo da Vinci' isAbout the Person Leonardo da Vinci; as well as to talk about sets of entities that can be described by a common noun: the common noun 'person' isAbout the set of all persons in a domain of discourse, which can be represented in DOLCE-Ultralite as an individual of the class: Collection .
+The isReferenceOf relation is irreflexive, differently from its inverse isAbout."""^^xsd:string ;
+                  rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                  rdfs:label "is reference of"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#parametrizes
+dul:parametrizes rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain dul:Parameter ;
+                 rdfs:range muo:QualityValue ;
+                 rdfs:comment """The relation between a Parameter, e.g. 'MajorAgeLimit', and a Region, e.g. '18_year'.
+For a more data-oriented relation, see hasDataValue"""^^xsd:string ;
+                 rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                 rdfs:label "parametrizes"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#realizes
+dul:realizes rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( dul:Action
+                                         dul:InformationRealization
+                                       )
+                         ] ;
+             rdfs:range dul:InformationObject ;
+             rdfs:comment "A relation between an information realization and an information object, e.g. the paper copy of the Italian Constitution realizes the text of the Constitution."^^xsd:string ;
+             rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+             rdfs:label "realizes"@en .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#hasOrganization
+ProblemExecution:hasOrganization rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf dul:hasParticipant ;
+                                 owl:inverseOf ProblemExecution:isOrganizationOf ;
+                                 rdfs:domain ProblemExecution:Execution ;
+                                 rdfs:range org:Organization ;
+                                 dc:creator "J.P.A. Martens"^^xsd:string ;
+                                 dc:date "2022-06-11T18:42:13Z"^^xsd:dateTime ;
+                                 rdfs:comment "a relation between an organization and an execution. The organization contributes to either solving the problem, or holds the problem"^^xsd:string ;
+                                 rdfs:label "has organization"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#isOrganizationOf
+ProblemExecution:isOrganizationOf rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf dul:isParticipantIn ;
+                                  rdfs:domain org:Organization ;
+                                  rdfs:range ProblemExecution:Execution ;
+                                  dc:creator "J.P.A. Martens"^^xsd:string ;
+                                  dc:date "2022-06-12T16:14:50Z"^^xsd:dateTime ;
+                                  rdfs:comment "a relation between an organization and an execution. The organization contributes to either solving the problem, or holds the problem"^^xsd:string ;
+                                  rdfs:label "is organization of"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#isSolvedIn
+ProblemExecution:isSolvedIn rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf dul:isExecutedIn ;
+                            owl:inverseOf ProblemExecution:solvesProblem ;
+                            rdfs:domain ProblemExecution:Problem ;
+                            rdfs:range ProblemExecution:Execution ;
+                            dc:creator "J.P.A. Martens"^^xsd:string ;
+                            dc:date "2022-06-11T19:19:21Z"^^xsd:dateTime ;
+                            rdfs:comment "a relation between an execution, and the problem the execution solves"^^xsd:string ;
+                            rdfs:label "is solved in"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#solvesProblem
+ProblemExecution:solvesProblem rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf dul:executesTask ;
+                               rdfs:domain ProblemExecution:Execution ;
+                               rdfs:range ProblemExecution:Problem ;
+                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                               dc:date "2022-06-11T18:46:41Z"^^xsd:dateTime ;
+                               rdfs:comment "a relation between an execution, and the problem the execution solves"^^xsd:string ;
+                               rdfs:label "solves problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#involvesOrganization
+Implementation:involvesOrganization rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf dul:involvesAgent ;
+                                    owl:inverseOf Implementation:isOrganizationInvolvedIn ;
+                                    rdfs:domain [ rdf:type owl:Class ;
+                                                  owl:unionOf ( cs:Software
+                                                                <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation>
+                                                                Implementation:Computational_Resource
+                                                              )
+                                                ] ;
+                                    rdfs:range org:Organization ;
+                                    dc:creator "J.P.A. Martens"^^xsd:string ;
+                                    dc:date "2022-06-15T12:56:41Z"^^xsd:dateTime ;
+                                    rdfs:comment "organization participation in some concept or event"^^xsd:string ;
+                                    rdfs:label "involves organization"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#isOrganizationInvolvedIn
+Implementation:isOrganizationInvolvedIn rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf dul:isAgentInvolvedIn ;
+                                        rdfs:domain org:Organization ;
+                                        rdfs:range [ rdf:type owl:Class ;
+                                                     owl:unionOf ( cs:Software
+                                                                   <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation>
+                                                                   Implementation:Computational_Resource
+                                                                 )
+                                                   ] ;
+                                        dc:creator "J.P.A. Martens"^^xsd:string ;
+                                        dc:date "2022-06-15T12:56:50Z"^^xsd:dateTime ;
+                                        rdfs:comment "organization developing software hardware or implementations"^^xsd:string ;
+                                        rdfs:label "is organization involved in"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#requires_Technology
+Implementation:requires_Technology rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf cs:requiresHardware ;
+                                   rdfs:domain Implementation:Computational_Resource ;
+                                   rdfs:range Implementation:Resource_Technology ;
+                                   dc:creator "J.P.A. Martens"^^xsd:string ;
+                                   dc:date "2022-06-11T11:25:20Z"^^xsd:dateTime ;
+                                   rdfs:comment "captures the technology required to operate a resource"^^xsd:string ;
+                                   rdfs:label "requires technology"^^xsd:string .
+
+
+###  http://www.w3.org/ns/mls/cp#hasInput
+mls:hasInput rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain ProblemExecution:Execution ;
+             rdfs:range mls:Input ;
+             rdfs:comment "A relation between a run and data that is taken as input to the run." ;
+             rdfs:label "has input"@en .
+
+
+###  http://www.w3.org/ns/mls/cp#hasOutput
+mls:hasOutput rdf:type owl:ObjectProperty ;
+              rdfs:domain ProblemExecution:Execution ;
+              rdfs:range mls:Output ;
+              rdfs:comment "A relation between a run and either a model or model evaluation that is produced on it’s output." ;
+              rdfs:label "has output"^^xsd:string .
+
+
+###  http://www.w3.org/ns/org#classification
+org:classification rdf:type owl:ObjectProperty ;
+                   rdfs:domain org:Organization ;
+                   rdfs:range [ rdf:type owl:Class ;
+                                owl:unionOf ( <http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification>
+                                              <http://www.w3.org/2004/02/skos/core#Concept>
+                                            )
+                              ] ;
+                   rdfs:comment "Indicates a classification for this Organization within some classification scheme. Extension vocabularies may wish to specialize this property to have a range corresponding to a specific `skos:ConceptScheme`. This property is under discussion and may be revised or removed - in many cases organizations are best categorized by defining a sub-class hierarchy in an extension vocabulary."@en ;
+                   rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+                   rdfs:label "classification"@en .
+
+
+###  http://www.w3.org/ns/org#hasSite
+org:hasSite rdf:type owl:ObjectProperty ;
+            owl:inverseOf org:siteOf ;
+            rdfs:domain org:Organization ;
+            rdfs:range org:Site ;
+            rdfs:comment "Indicates a site at which the Organization has some presence even if only indirect (e.g. virtual office or a professional service which is acting as the registered address for a company). Inverse of `org:siteOf`."@en ;
+            rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+            rdfs:label "has site"@en .
+
+
+###  http://www.w3.org/ns/org#hasUnit
+org:hasUnit rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf org:unitOf ;
+            rdfs:domain org:Organization ;
+            rdfs:range org:OrganizationalUnit ;
+            rdfs:comment "Indicates a unit which is part of this Organization, e.g. a Department within a larger FormalOrganization. Inverse of `org:unitOf`."@en ;
+            rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+            rdfs:label "has Unit"@en .
+
+
+###  http://www.w3.org/ns/org#siteOf
+org:siteOf rdf:type owl:ObjectProperty ;
+           rdfs:domain org:Site ;
+           rdfs:range org:Organization ;
+           rdfs:comment "Indicates an Organization which has some presence at the given site. This is the inverse of `org:hasSite`."@en ;
+           rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+           rdfs:label "site Of"@en .
+
+
+###  http://www.w3.org/ns/org#unitOf
+org:unitOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain org:OrganizationalUnit ;
+           rdfs:range org:Organization ;
+           rdfs:comment "Indicates an Organization of which this Unit is a part, e.g. a Department within a larger FormalOrganization. This is the inverse of `org:hasUnit`."@en ;
+           rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+           rdfs:label "unit Of"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParameterDataValue
+dul:hasParameterDataValue rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdfs:domain dul:Parameter ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment """Parametrizes values from a datatype. For example, a Parameter MinimumAgeForDriving hasParameterDataValue 18 on datatype xsd:int, in the Italian traffic code. In this example, MinimumAgeForDriving isDefinedIn the Norm ItalianTrafficCodeAgeDriving.
+More complex parametrization requires workarounds. E.g. AgeRangeForDrugUsage could parametrize data value: 14 to 50 on the datatype: xsd:int. Since complex datatypes are not allowed in OWL1.0, a solution to this can only work by creating two 'sub-parameters': MinimumAgeForDrugUsage (that hasParameterDataValue 14) and MaximumAgeForDrugUsage (that hasParameterDataValue 50), which are components of (cf. hasComponent) the main Parameter AgeRangeForDrugUsage.
+Ordering on subparameters can be created by using or specializing the object property 'precedes'."""^^xsd:string ;
+                          rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                          rdfs:label "ha valore"@it ,
+                                     "has parameter data value"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://elite.polito.it/ontologies/dogont.owl#UnitOfMeasurement
+<http://elite.polito.it/ontologies/dogont.owl#UnitOfMeasurement> rdf:type owl:Class ;
+                                                                 rdfs:comment "Measurement units are standards for measurement of physical properties or qualities. Every unit is related to a particular kind of property. For instance, the meter unit is uniquely related to the length property. Under our ontological approach, units are abstract spaces used as a reference metrics for quality spaces, such as physical qualia, and they are counted by some number. For instance, weight-units define some quality spaces for the weight-quality where specific weights of objects, like devices or persons, are located by means of comparisons with the proper weight-value of the selected weight-unit."@en ;
+                                                                 rdfs:label "Unit of measurement"@en .
+
+
+###  http://elite.polito.it/ontologies/muo-vocab.owl#QualityValue
+muo:QualityValue rdf:type owl:Class ;
+                 rdfs:comment """The value of an individual quality, for instance, the weight of an individual object.   If we consider metrology, the value of a physical quality Q is expressed as the product of a numerical value {Q} and a physical unit [Q]: Q = {Q} x [Q]. In MUO, the class muo:QualityValue is used to represent the values of qualities, Q. Instances of this class are related with 1) exactly one unit, suitable for measure the physical quality (meters for length, grams for weight, etc), by means of the property muo:measuredIn, [Q]; 2) a number, which express the relationship between the value and the unit by means of the rdf:value property, {Q}; 3) a time, which expresses the quality value along the line of time. Quality values can be temporalized, but this is not always necessary.
+"""@en ;
+                 rdfs:label "Quality value"@en .
+
+
+###  http://mklab.iti.gr/pericles/ComputerSystem_ODP#Hardware
+cs:Hardware rdf:type owl:Class ;
+            rdfs:comment "the machines, wiring, and other physical components of a computer or other electronic system"^^xsd:string ;
+            rdfs:label "Hardware"^^xsd:string .
+
+
+###  http://mklab.iti.gr/pericles/ComputerSystem_ODP#Software
+cs:Software rdf:type owl:Class ;
+            rdfs:comment "the programs and other operating information used by a computer"^^xsd:string ;
+            rdfs:label "Software"^^xsd:string .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action
+dul:Action rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty dul:executesTask ;
+                             owl:minCardinality "1"^^xsd:nonNegativeInteger
+                           ] ;
+           rdfs:comment "An Event with at least one Agent that isParticipantIn it, and that executes a Task that typically isDefinedIn a Plan, Workflow, Project, etc."^^xsd:string ;
+           rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+           rdfs:label "Action"@en ,
+                      "Azione"@it .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Collection
+dul:Collection rdf:type owl:Class ;
+               rdfs:comment """Any container for entities that share one or more common properties. E.g. \"stone objects\", \"the nurses\", \"the Louvre Aegyptian collection\", all the elections for the Italian President of the Republic. 
+A collection is not a logical class: a collection is a first-order entity, while a class is second-order.
+A collection is neither an aggregate of its member entities (see e.g. ObjectAggregate class)."""^^xsd:string ;
+               rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+               rdfs:label "Collection"@en ,
+                          "Collezione"@it .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept
+dul:Concept rdf:type owl:Class ;
+            rdfs:comment """A Concept is a SocialObject, and isDefinedIn some Description; once defined, a Concept can be used in other Description(s). If a Concept isDefinedIn exactly one Description, see the LocalConcept class.
+The classifies relation relates Concept(s) to Entity(s) at some TimeInterval"""^^xsd:string ;
+            rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+            rdfs:label "Concept"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject
+dul:InformationObject rdf:type owl:Class ;
+                      rdfs:comment "A piece of information, such as a musical composition, a text, a word, a picture, independently from how it is concretely realized."^^xsd:string ;
+                      rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+                      rdfs:label "Information object"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization
+dul:InformationRealization rdf:type owl:Class ;
+                           rdfs:comment """A concrete realization of an InformationObject, e.g. the written document (object) containing the text of a law, a poetry reading (event), the dark timbre (quality) of a sound (event) in the execution (event) of a musical composition, realizing a 'misterioso' tempo indication.
+
+The realization of an information object also realizes information about itself. This is a special semiotic feature, which allows to avoid a traditonal paradox, by which an information is often supposed to be about itself besides other entities (e.g. the information object 'carpe diem' is about its meaning in Horace's Odes (let alone its fortune in Western culture and beyond), but also about its expression in context: 'dum loquimur, fugerit invida aetas: carpe diem, quam minimum credula postero', with the sound and emotional relations that it could activate.
+This is expressed in OWL2 with a local reflexivity axiom of the dul:InformationRealization class."""^^xsd:string ;
+                           rdfs:label "Information Realization"^^xsd:string .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter
+dul:Parameter rdf:type owl:Class ;
+              rdfs:subClassOf dul:Concept ;
+              rdfs:comment "A Concept that classifies a Region; the difference between a Region and a Parameter is that regions represent sets of observable values, e.g. the height  of a given building, while parameters represent constraints or selections on observable values, e.g. 'VeryHigh'. Therefore, parameters can also be used to constrain regions, e.g. VeryHigh on a subset of values of the Region Height applied to buildings, or to add an external selection criterion , such as measurement units, to regions, e.g. Meter on a subset of values from the Region Length applied to the Region Length applied to roads."^^xsd:string ;
+              rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+              rdfs:label "Parameter"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task
+dul:Task rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty dul:isExecutedIn ;
+                           owl:allValuesFrom dul:Action
+                         ] ;
+         rdfs:comment """An EventType that classifies an Action to be executed. 
+For example, reaching a destination is a task that can be executed by performing certain actions, e.g. driving a car, buying a train ticket, etc. 
+The actions to execute a task can also be organized according to a Plan that is not the same as the one that defines the task (if any). 
+For example, reaching a destination could be defined by a plan to get on holidays, while the plan to execute the task can consist of putting some travels into a sequence."""^^xsd:string ;
+         rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+         rdfs:label "Task"@en ,
+                    "Task"@it .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model
+<http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model> rdf:type owl:Class ;
+                                                                                               rdfs:subClassOf dul:InformationObject ;
+                                                                                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                                                                                               dc:date "2022-06-11T10:40:40Z"^^xsd:dateTime ;
+                                                                                               rdfs:comment "quantum algorithms express computational models, which can be seen as mathematical rules defining how quantum computation is performed"^^xsd:string ;
+                                                                                               rdfs:label "Computational Model"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation
+<http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation> rdf:type owl:Class ;
+                                                                                                  rdfs:subClassOf dul:InformationRealization ;
+                                                                                                  dc:creator "J.P.A. Martens"^^xsd:string ;
+                                                                                                  dc:date "2022-06-11T10:39:35Z"^^xsd:dateTime ;
+                                                                                                  rdfs:comment "Representing a system with hardware and software dependencies that is able to implement a quantum algorithm." ;
+                                                                                                  rdfs:label "Quantum Implementation"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Restricted_Computational_Model
+<http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Restricted_Computational_Model> rdf:type owl:Class ;
+                                                                                                          rdfs:subClassOf <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model> ;
+                                                                                                          dc:creator "J.P.A. Martens"^^xsd:string ;
+                                                                                                          dc:date "2022-06-11T10:42:08Z"^^xsd:dateTime ;
+                                                                                                          rdfs:label "Restricted Computational Model"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Universal_Computational_Model
+<http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Universal_Computational_Model> rdf:type owl:Class ;
+                                                                                                         rdfs:subClassOf <http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Computational_Model> ;
+                                                                                                         dc:creator "J.P.A. Martens"^^xsd:string ;
+                                                                                                         dc:date "2022-06-11T10:41:59Z"^^xsd:dateTime ;
+                                                                                                         rdfs:label "Universal Computational Model"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification
+<http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                                    dc:creator "J.P.A. Martens"^^xsd:string ;
+                                                                                    dc:date "2022-06-11T09:27:27Z"^^xsd:dateTime ;
+                                                                                    rdfs:comment "The application area of the organization. The core operations of the organization." ;
+                                                                                    rdfs:label "Classification" .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Application_Area
+ProblemExecution:Application_Area rdf:type owl:Class ;
+                                  rdfs:subClassOf dul:Collection ;
+                                  dc:creator "J.P.A. Martens"^^xsd:string ;
+                                  dc:date "2022-06-11T18:37:06Z"^^xsd:dateTime ;
+                                  rdfs:comment "The application area is used to describe problems that are applied to similar use cases (e.g. cryptography)" ;
+                                  rdfs:label "Application Area"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#ArtificalIntelligenceProblem
+ProblemExecution:ArtificalIntelligenceProblem rdf:type owl:Class ;
+                                              rdfs:subClassOf ProblemExecution:Problem_Type ;
+                                              dc:creator "J.P.A. Martens"^^xsd:string ;
+                                              dc:date "2022-06-11T19:33:27Z"^^xsd:dateTime ;
+                                              rdfs:comment "Problems related to AI: the theory and development of computer systems able to perform tasks normally requiring human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages"^^xsd:string ;
+                                              rdfs:label "Artificial Intelligence Problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Complexity_Class
+ProblemExecution:Complexity_Class rdf:type owl:Class ;
+                                  rdfs:subClassOf dul:Collection ;
+                                  dc:creator "J.P.A. Martens"^^xsd:string ;
+                                  dc:date "2022-06-11T18:37:06Z"^^xsd:dateTime ;
+                                  rdfs:comment "problems relate to complexity classes that group problems by difficulty. These classes range from P, defining “can be solved by a deterministic classical computer in polynomial time,” to QMA, defining “solution can be checked by a quantum computer in polynomial time”"^^xsd:string ;
+                                  rdfs:label "Complexity Class"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Data
+ProblemExecution:Data rdf:type owl:Class ;
+                      rdfs:subClassOf dul:Concept ;
+                      dc:creator "J.P.A. Martens"^^xsd:string ;
+                      dc:date "2022-06-11T18:37:57Z"^^xsd:dateTime ;
+                      rdfs:comment "nformation, especially facts or numbers, collected to be examined and considered"^^xsd:string ;
+                      rdfs:label "Data"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Data_Property
+ProblemExecution:Data_Property rdf:type owl:Class ;
+                               rdfs:subClassOf dul:Parameter ;
+                               owl:disjointWith ProblemExecution:Performance_Property ;
+                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                               dc:date "2022-06-11T18:38:27Z"^^xsd:dateTime ;
+                               rdfs:comment "data characteristics on instance level and dataset level"^^xsd:string ;
+                               rdfs:label "Data Property"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Execution
+ProblemExecution:Execution rdf:type owl:Class ;
+                           rdfs:subClassOf dul:Action ;
+                           dc:creator "J.P.A. Martens"^^xsd:string ;
+                           dc:date "2022-06-11T18:35:07Z"^^xsd:dateTime ;
+                           rdfs:comment "Representing the execution of an algorithm’s implementation, with a particular performance, through which an organization’s problem is solved." ;
+                           rdfs:label "Execution"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#MachineLearningProblem
+ProblemExecution:MachineLearningProblem rdf:type owl:Class ;
+                                        rdfs:subClassOf ProblemExecution:Problem_Type ;
+                                        dc:creator "J.P.A. Martens"^^xsd:string ;
+                                        dc:date "2022-06-11T19:33:27Z"^^xsd:dateTime ;
+                                        rdfs:comment "Problems related to ML: the use and development of computer systems that are able to learn and adapt without following explicit instructions, by using algorithms and statistical models to analyse and draw inferences from patterns in data."^^xsd:string ;
+                                        rdfs:label "Machine Learning Problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#MathematicalProblem
+ProblemExecution:MathematicalProblem rdf:type owl:Class ;
+                                     rdfs:subClassOf ProblemExecution:Problem_Type ;
+                                     dc:creator "J.P.A. Martens"^^xsd:string ;
+                                     dc:date "2022-06-11T19:33:27Z"^^xsd:dateTime ;
+                                     rdfs:comment "problems that can be represented, analyzed, and possibly solved, with the methods of mathematics."^^xsd:string ;
+                                     rdfs:label "Mathematical Problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Performance
+ProblemExecution:Performance rdf:type owl:Class ;
+                             rdfs:subClassOf dul:Concept ;
+                             dc:creator "J.P.A. Martens"^^xsd:string ;
+                             dc:date "2022-06-11T18:38:02Z"^^xsd:dateTime ;
+                             rdfs:comment "the outcomes of performing a task or function"^^xsd:string ;
+                             rdfs:label "Performance"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Performance_Property
+ProblemExecution:Performance_Property rdf:type owl:Class ;
+                                      rdfs:subClassOf dul:Parameter ;
+                                      dc:creator "J.P.A. Martens"^^xsd:string ;
+                                      dc:date "2022-06-11T18:38:27Z"^^xsd:dateTime ;
+                                      rdfs:comment "types of performance measures, such as number of qubits used, duration of the operation, and computational power used"^^xsd:string ;
+                                      rdfs:label "Performance Property"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Problem
+ProblemExecution:Problem rdf:type owl:Class ;
+                         rdfs:subClassOf dul:Task ;
+                         dc:creator "J.P.A. Martens"^^xsd:string ;
+                         dc:date "2022-06-11T18:35:56Z"^^xsd:dateTime ;
+                         rdfs:comment "situation regarded as unwelcome or harmful and needing to be dealt with and overcome"^^xsd:string ;
+                         rdfs:label "Problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#Problem_Type
+ProblemExecution:Problem_Type rdf:type owl:Class ;
+                              rdfs:subClassOf dul:Collection ;
+                              dc:creator "J.P.A. Martens"^^xsd:string ;
+                              dc:date "2022-06-11T18:37:06Z"^^xsd:dateTime ;
+                              rdfs:comment "To group problems with similar characteristics"^^xsd:string ;
+                              rdfs:label "Problem Type"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#SearchProblem
+ProblemExecution:SearchProblem rdf:type owl:Class ;
+                               rdfs:subClassOf ProblemExecution:Problem_Type ;
+                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                               dc:date "2022-06-11T19:33:27Z"^^xsd:dateTime ;
+                               rdfs:comment "A computational problem that requires identifying a solution from some, possibly infinite, solution space"^^xsd:string ;
+                               rdfs:label "Search Problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/ProblemExecution#SortingProblem
+ProblemExecution:SortingProblem rdf:type owl:Class ;
+                                rdfs:subClassOf ProblemExecution:Problem_Type ;
+                                dc:creator "J.P.A. Martens"^^xsd:string ;
+                                dc:date "2022-06-11T19:33:27Z"^^xsd:dateTime ;
+                                rdfs:comment "problem of sorting pairs of numbers by their sums"^^xsd:string ;
+                                rdfs:label "Sorting Problem"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata
+Publication:Metadata rdf:type owl:Class ;
+                     rdfs:subClassOf dul:Parameter ;
+                     dc:creator "J.P.A. Martens"^^xsd:string ;
+                     dc:date "2022-06-15T14:10:47Z"^^xsd:dateTime ;
+                     rdfs:comment "a set of data, or information, that describes other data or information (e.g. publications)"^^xsd:string ;
+                     rdfs:label "Metadata"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Publication
+Publication:Publication rdf:type owl:Class ;
+                        rdfs:subClassOf dul:InformationObject ;
+                        dc:creator "J.P.A. Martens"^^xsd:string ;
+                        dc:date "2022-06-11T12:03:38Z"^^xsd:dateTime ;
+                        rdfs:comment "Representing a characterization of a (scientific) publication, used to reference algorithms, implementations, or executions."^^xsd:string ;
+                        rdfs:label "Publication"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Algorithm_Class
+QuantumAlgorithm:Algorithm_Class rdf:type owl:Class ;
+                                 rdfs:subClassOf dul:Collection ;
+                                 owl:disjointWith QuantumAlgorithm:Speedup_Class ;
+                                 dc:creator "J.P.A. Martens"^^xsd:string ;
+                                 dc:date "2022-06-11T13:39:46Z"^^xsd:dateTime ;
+                                 rdfs:comment "quantum algorithms can be distinguished into multiple categories (i.e., algorithm classification), such as algebraic and number-theoretic algorithms, approximation and simulation algorithms, and oracular algorithms" ;
+                                 rdfs:label "Algorithm Class"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Algorithm
+QuantumAlgorithm:Quantum_Algorithm rdf:type owl:Class ;
+                                   rdfs:subClassOf dul:InformationObject ;
+                                   dc:creator "J.P.A. Martens"^^xsd:string ;
+                                   dc:date "2022-06-11T13:39:15Z"^^xsd:dateTime ;
+                                   rdfs:comment "Quantum algorithms are described by circuits structured by collections of quantum gates"^^xsd:string ;
+                                   rdfs:label "Quantum Algorithm"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Speedup_Class
+QuantumAlgorithm:Speedup_Class rdf:type owl:Class ;
+                               rdfs:subClassOf dul:Collection ;
+                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                               dc:date "2022-06-11T13:39:46Z"^^xsd:dateTime ;
+                               rdfs:comment "quantum algorithms can achieve a speedup over the best-performing classical algorithm, and this speedup is defined with polynomial factors. For example, a polynomial function could be T (e.g., quantum takes 100 steps) over T2 (e.g., classical takes 10,000 steps), which means the quantum algorithm achieves polynomial speedup"^^xsd:string ;
+                               rdfs:label "Speedup Class"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Acces_Method
+Implementation:Acces_Method rdf:type owl:Class ;
+                            rdfs:subClassOf cs:Software ;
+                            dc:creator "J.P.A. Martens"^^xsd:string ;
+                            dc:date "2022-06-10T15:03:41Z"^^xsd:dateTime ;
+                            rdfs:comment "access methods provide access to a computational quantum resource"^^xsd:string ;
+                            rdfs:label "Access Method"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Assembly_Language
+Implementation:Assembly_Language rdf:type owl:Class ;
+                                 rdfs:subClassOf Implementation:Programming_language ;
+                                 dc:creator "J.P.A. Martens"^^xsd:string ;
+                                 dc:date "2022-06-10T15:10:19Z"^^xsd:dateTime ;
+                                 rdfs:comment "Assembly languages (e.g., Quil) are so-called instruction languages that provide instructions to the computational resource on what operations should be performed on the qubits"^^xsd:string ;
+                                 rdfs:label "Assembly Language"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Command_Line_Interface
+Implementation:Command_Line_Interface rdf:type owl:Class ;
+                                      rdfs:subClassOf Implementation:Acces_Method ;
+                                      dc:creator "J.P.A. Martens"^^xsd:string ;
+                                      dc:date "2022-06-10T15:12:02Z"^^xsd:dateTime ;
+                                      rdfs:comment "a type of access method, such as AWS CLI"^^xsd:string ;
+                                      rdfs:label "Command Line Interface"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Compiler
+Implementation:Compiler rdf:type owl:Class ;
+                        rdfs:subClassOf cs:Software ;
+                        dc:creator "J.P.A. Martens"^^xsd:string ;
+                        dc:date "2022-06-10T15:05:50Z"^^xsd:dateTime ;
+                        rdfs:comment "a program that converts instructions into a machine-code or lower-level form so that they can be read and executed by a computer."^^xsd:string ;
+                        rdfs:label "Compiler"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Computational_Resource
+Implementation:Computational_Resource rdf:type owl:Class ;
+                                      rdfs:subClassOf cs:Hardware ;
+                                      dc:creator "J.P.A. Martens"^^xsd:string ;
+                                      dc:date "2022-06-10T15:01:20Z"^^xsd:dateTime ;
+                                      rdfs:comment "the major hardware involved in implementation is the computational resource."^^xsd:string ;
+                                      rdfs:label "Computational Resource"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Graphical_User_Interface
+Implementation:Graphical_User_Interface rdf:type owl:Class ;
+                                        rdfs:subClassOf Implementation:Acces_Method ;
+                                        dc:creator "J.P.A. Martens"^^xsd:string ;
+                                        dc:date "2022-06-10T15:11:48Z"^^xsd:dateTime ;
+                                        rdfs:comment "a type of access method"^^xsd:string ;
+                                        rdfs:label "Graphical User Interface"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Implementer
+Implementation:Implementer rdf:type owl:Class ;
+                           rdfs:subClassOf org:Organization ;
+                           dc:creator "J.P.A. Martens"^^xsd:string ;
+                           dc:date "2022-06-12T17:45:39Z"^^xsd:dateTime ;
+                           rdfs:comment "an organization that implements and organizes all the software and hardware."^^xsd:string ;
+                           rdfs:label "Implementer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Integration_Language
+Implementation:Integration_Language rdf:type owl:Class ;
+                                    rdfs:subClassOf Implementation:Programming_language ;
+                                    dc:creator "J.P.A. Martens"^^xsd:string ;
+                                    dc:date "2022-06-10T15:10:42Z"^^xsd:dateTime ;
+                                    rdfs:comment "Integration languages (e.g., Orquestra), or workflow languages, organize the workflow between classical and quantum resources in hybrid implementations"^^xsd:string ;
+                                    rdfs:label "Integration Language"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Library
+Implementation:Library rdf:type owl:Class ;
+                       rdfs:subClassOf cs:Software ;
+                       dc:creator "J.P.A. Martens"^^xsd:string ;
+                       dc:date "2022-06-10T15:05:41Z"^^xsd:dateTime ;
+                       rdfs:comment "is a suite of data and programming code that is used to develop software programs and applications"^^xsd:string ;
+                       rdfs:label "Library"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Local_Quantum_Simulator
+Implementation:Local_Quantum_Simulator rdf:type owl:Class ;
+                                       rdfs:subClassOf Implementation:Computational_Resource ;
+                                       dc:creator "J.P.A. Martens"^^xsd:string ;
+                                       dc:date "2022-06-10T15:33:58Z"^^xsd:dateTime ;
+                                       rdfs:comment "in the NISQ-era, quantum computers are limited, making running substantial computations impossible. Alternatively, quantum simulators (e.g., in the cloud) simulate quantum computation on classical hardware."^^xsd:string ;
+                                       rdfs:label "Local Quantum Simulator"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Local_Simulator
+Implementation:Local_Simulator rdf:type owl:Class ;
+                               rdfs:subClassOf cs:Software ;
+                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                               dc:date "2022-06-10T15:05:33Z"^^xsd:dateTime ;
+                               rdfs:comment "quantum simulators (e.g., in the cloud) simulate quantum computation on classical hardware"^^xsd:string ;
+                               rdfs:label "Local Simulator"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Programming_language
+Implementation:Programming_language rdf:type owl:Class ;
+                                    rdfs:subClassOf cs:Software ;
+                                    dc:creator "J.P.A. Martens"^^xsd:string ;
+                                    dc:date "2022-06-10T15:08:32Z"^^xsd:dateTime ;
+                                    rdfs:comment "an artificial language that can be used to control the behaviour of a machine, particularly a computer."^^xsd:string ;
+                                    rdfs:label "Programming Language"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Quantum_Processing_Unit
+Implementation:Quantum_Processing_Unit rdf:type owl:Class ;
+                                       rdfs:subClassOf Implementation:Computational_Resource ;
+                                       dc:creator "J.P.A. Martens"^^xsd:string ;
+                                       dc:date "2022-06-10T15:33:13Z"^^xsd:dateTime ;
+                                       rdfs:comment "For example, the IBMQX5 16-qubit QPU by resource provider IBM Quantum services, or Rigetti’s Aspen-10 QPU, managing 32 qubits."^^xsd:string ;
+                                       rdfs:label "Quantum Processing Unit"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Quantum_Programming_language
+Implementation:Quantum_Programming_language rdf:type owl:Class ;
+                                            rdfs:subClassOf Implementation:Programming_language ;
+                                            dc:creator "J.P.A. Martens"^^xsd:string ;
+                                            dc:date "2022-06-10T15:10:32Z"^^xsd:dateTime ;
+                                            rdfs:comment "Quantum programming languages (e.g., Quipper) are higher in level than assembly languages and provide features such as loops and recursion"^^xsd:string ;
+                                            rdfs:label "Quantum Programming Language"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#ResourceProvider
+Implementation:ResourceProvider rdf:type owl:Class ;
+                                rdfs:subClassOf org:Organization ;
+                                dc:creator "J.P.A. Martens"^^xsd:string ;
+                                dc:date "2022-06-12T17:45:39Z"^^xsd:dateTime ;
+                                rdfs:comment "an organization that provides computational resources (e.g. ibm)"^^xsd:string ;
+                                rdfs:label "Resource Provider"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Resource_Property
+Implementation:Resource_Property rdf:type owl:Class ;
+                                 rdfs:subClassOf dul:Parameter ;
+                                 dc:creator "J.P.A. Martens"^^xsd:string ;
+                                 dc:date "2022-06-11T10:23:58Z"^^xsd:dateTime ;
+                                 rdfs:comment "the quantum computational resource is characterized by its resource properties. For example, the gate set (i.e., circuit depth) denotes the number of gates the resource can perform sequentially, while the circuit width denotes the number of qubits available to manipulate. Furthermore, as previously stated, qubits are noisy and erroneous. Accordingly, coherence duration refers to the quality of qubits (i.e., time without errors). Similarly, gate fidelity defines the quality of the gates, measured by the average distance between gates . Lastly, the qubit connectivity refers to the topology of qubits, which optimally is all-to-all."^^xsd:string ;
+                                 rdfs:label "Resource Property"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Resource_Technology
+Implementation:Resource_Technology rdf:type owl:Class ;
+                                   rdfs:subClassOf cs:Hardware ;
+                                   dc:creator "J.P.A. Martens"^^xsd:string ;
+                                   dc:date "2022-06-10T15:36:44Z"^^xsd:dateTime ;
+                                   rdfs:comment "the qubit technologies enabling the implementation of a QPU are defined, such as photon polarization or spin states of atoms and electrons"^^xsd:string ;
+                                   rdfs:label "Resource Technology"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#SoftwareDeveloper
+Implementation:SoftwareDeveloper rdf:type owl:Class ;
+                                 rdfs:subClassOf org:Organization ;
+                                 dc:creator "J.P.A. Martens"^^xsd:string ;
+                                 dc:date "2022-06-12T17:45:39Z"^^xsd:dateTime ;
+                                 rdfs:comment "an organization that develops software"^^xsd:string ;
+                                 rdfs:label "Software Developer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Software_Development_Kit
+Implementation:Software_Development_Kit rdf:type owl:Class ;
+                                        rdfs:subClassOf dul:Collection ;
+                                        dc:creator "J.P.A. Martens"^^xsd:string ;
+                                        dc:date "2022-06-15T12:48:49Z"^^xsd:dateTime ;
+                                        rdfs:comment "software development kits (SDKs) are collections of advanced developer tools"^^xsd:string ;
+                                        rdfs:label "Software Development Kit"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Software_Property
+Implementation:Software_Property rdf:type owl:Class ;
+                                 rdfs:subClassOf dul:Parameter ;
+                                 dc:creator "J.P.A. Martens"^^xsd:string ;
+                                 dc:date "2022-06-11T10:23:50Z"^^xsd:dateTime ;
+                                 rdfs:comment "characteristics of software, such as version, license, and OS-compatibility"^^xsd:string ;
+                                 rdfs:label "Software Property"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Syntax_Language
+Implementation:Syntax_Language rdf:type owl:Class ;
+                               rdfs:subClassOf Implementation:Programming_language ;
+                               dc:creator "J.P.A. Martens"^^xsd:string ;
+                               dc:date "2022-06-10T15:10:54Z"^^xsd:dateTime ;
+                               rdfs:comment "Syntax programming languages host these programming languages, such as Python for pyQuil."^^xsd:string ;
+                               rdfs:label "Syntax Language"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Transpiler
+Implementation:Transpiler rdf:type owl:Class ;
+                          rdfs:subClassOf Implementation:Compiler ;
+                          dc:creator "J.P.A. Martens"^^xsd:string ;
+                          dc:date "2022-06-10T15:06:01Z"^^xsd:dateTime ;
+                          rdfs:comment "a type of translator that takes the source code of a program written in a programming language as its input and produces an equivalent source code in the same or a different programming language"^^xsd:string ;
+                          rdfs:label "Transpiler"^^xsd:string .
+
+
+###  http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumImplementation#Web_Service
+Implementation:Web_Service rdf:type owl:Class ;
+                           rdfs:subClassOf Implementation:Acces_Method ;
+                           dc:creator "J.P.A. Martens"^^xsd:string ;
+                           dc:date "2022-06-10T15:11:36Z"^^xsd:dateTime ;
+                           rdfs:comment "a type of access method, such as IBMQ's rest API"^^xsd:string ;
+                           rdfs:label "Web Service"^^xsd:string .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class ;
+                                              rdfs:comment """The class skos:Concept is the class of SKOS concepts.
+
+A SKOS concept can be viewed as an idea or notion; a unit of thought. However, what constitutes a unit of thought is subjective, and this definition is meant to be suggestive, rather than restrictive.
+
+The notion of a SKOS concept is useful when describing the conceptual or intellectual structure of a knowledge organization system, and when referring to specific ideas or meanings established within a KOS.
+
+Note that, because SKOS is designed to be a vehicle for representing semi-formal KOS, such as thesauri and classification schemes, a certain amount of flexibility has been built in to the formal definition of this class.""" ;
+                                              rdfs:label "Concept" .
+
+
+###  http://www.w3.org/ns/mls/cp#Input
+mls:Input rdf:type owl:Class ;
+          rdfs:comment """Data is a data item composed of data examples and it may be of a various level of granularity and complexity. 
+With regard to granularity, it can be a whole dataset (for instance, one main table and possibly other tables), or only a single table, or only a feature (e.g., a column of a table), or only an instance (e.g., row of a table), or a single feature-value pair. 
+With regard to complexity, data examples are characterized by their datatype, which may be arbitrarily complex (e.g., instead of a table it can be an arbitrary graph).""" ;
+          rdfs:label "Input"^^xsd:string .
+
+
+###  http://www.w3.org/ns/mls/cp#Output
+mls:Output rdf:type owl:Class ;
+           rdfs:comment "Model is a generalization of a set of training data able to predict values for unseen instances. It is an output from an execution of a data mining algorithm implementation. Models have a dual nature. They can be treated as data structures and as such represented, stored and manipulated. On the other hand, they act as functions and are executed, taking as input data examples and giving as output the result of applying the function to a data example. Models can also be divided into global or local ones. A global model has global coverage of a data set, i.e., it generalizes the whole data set. A local model, such as a pattern set, is a set of local hypotheses, i.e. each applies to a limited region of the data set." ;
+           rdfs:label "Output"^^xsd:string .
+
+
+###  http://www.w3.org/ns/org#FormalOrganization
+org:FormalOrganization rdf:type owl:Class ;
+                       rdfs:subClassOf org:Organization ;
+                       rdfs:comment "An Organization which is recognized in the world at large, in particular in legal jurisdictions, with associated rights and responsibilities. Examples include a Corporation, Charity, Government or Church. Note that this is a super class of `gr:BusinessEntity` and it is recommended to use the GoodRelations vocabulary to denote Business classifications such as DUNS or NAICS."@en ;
+                       rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+                       rdfs:label "Formal Organization"@en .
+
+
+###  http://www.w3.org/ns/org#Organization
+org:Organization rdf:type owl:Class ;
+                 owl:disjointWith org:Site ;
+                 rdfs:comment "Represents a collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it and can act as an Agent. Organizations are often decomposable into hierarchical structures.  It is recommended that SKOS lexical labels should be used to label the Organization. In particular `skos:prefLabel` for the primary (possibly legally recognized name), `skos:altLabel` for alternative names (trading names, colloquial names) and `skos:notation` to denote a code from a code list. Alternative names: _Collective_ _Body_ _Org_ _Group_"@en ;
+                 rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+                 rdfs:label "Organization"@en .
+
+
+###  http://www.w3.org/ns/org#OrganizationalUnit
+org:OrganizationalUnit rdf:type owl:Class ;
+                       rdfs:subClassOf org:Organization ;
+                       rdfs:comment "An Organization such as a University Support Unit which is part of some larger FormalOrganization and only has full recognition within the context of that FormalOrganization, it is not a Legal Entity in its own right. Units can be large and complex containing other Units and even FormalOrganizations. Alternative names: _OU_ _Unit_ _Department_"@en ;
+                       rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+                       rdfs:label "OrganizationalUnit"@en .
+
+
+###  http://www.w3.org/ns/org#Site
+org:Site rdf:type owl:Class ;
+         rdfs:comment "An office or other premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations. In most cases a Site will be a physical location. However, we don't exclude the possibility of non-physical sites such as a virtual office with an associated post box and phone reception service. Extensions may provide subclasses to denote particular types of site."@en ,
+                      "Oficina, local o cualquier otro lugar en el que se encuentra una organización. Muchas organizaciones están distribuidas en varias sedes, que a su vez están repartidas en distintas ubicaciones. En muchos casos una sede será un sitio o local físico. Sin embargo, no se excluye la posibilidad de lugares no físicos como oficinas virtuales con los correspondientes apartados de correo y servicio de atención telefónica. Se pueden añadir más subtipos mediante extensiones para incluir tipos especiales de lugares."@es ,
+                      "Un ufficio o altra sede dovei l'organizzazione è situata. Molte organizzazione sono distribuite su più sedi e molte sedi ospitano più ubicazioni. Nella maggior parte dei casi un Site è una locazione fisica. Non si esclude la possibilità di indicare sedi non fisiche come ad esempio gli uffici virtuali. Le estensioni dell'ontologia potrebbero usare delle sottoclassi per rappresentare i tipi particolari di sede."@it ,
+                      "Un établissement ou tout autre lieu dans lequel une Organisation est localisé. Beaucoup d'organisations sont dispersées à travers plusieurs sites. Dans la plupart des cas un Site sera un lieu physique. Toutefois, nous n'excluons pas la possibilité de sites non-physiques comme un bureau virtuel avec une boîte postale et un service de secrétariat mutualisé. Des extensions pourraient fournir des sous-classes pour décrire des types de sites particuliers."@fr ,
+                      "組織が位置するオフィスやその他の敷地。多くの組織が複数のサイトに散在しており、多くのサイトが多数の場所を持つでしょう。"@ja ;
+         rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+         rdfs:label "Sede"@it ,
+                    "Site"@en ,
+                    "Site"@fr ,
+                    "sede"@es .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( ProblemExecution:Application_Area
+                ProblemExecution:Complexity_Class
+                ProblemExecution:Problem_Type
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

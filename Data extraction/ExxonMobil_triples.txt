@@ -1,0 +1,57 @@
+{'s':'quantumshare:Vehicle_Routing_With_Time_Windows' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Problem'}
+{'s':'quantumshare:NP_Hard' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Complexity_Class'}
+{'s':'quantumshare:Vehicle_Routing_With_Time_Windows' , 'p':'dul:isPartOf', 'o':'quantumshare:NP_Hard'}
+{'s':'quantumshare:Vehicle_Routing_With_Time_Windows' , 'p':'dul:isPartOf', 'o':'quantumshare:Vehicle_Routing_Problem'}
+{'s':'quantumshare:Vehicle_Routing_With_Time_Windows' , 'p':'rdfs:subClassOf', 'o':'quantumshare:Maritime_Engineering'}
+{'s':'quantumshare:Vehicle_Routing_With_Time_Windows' , 'p':'rdfs:subClassOf', 'o':'quantumshare:Transportation_Planning'} 
+{'s':'quantumshare:Vehicle_Routing_With_Time_Windows' , 'p':'dul:isPartOf', 'o':'quantumshare:Maritime_Shipping'}
+{'s':'quantumshare:IBM' , 'p':'rdfs:subClassOf' , 'o':'org:FormalOrganization'}
+{'s':'quantumshare:ExxonMobil' , 'p':'rdfs:subClassOf' , 'o':'org:FormalOrganization'}
+{'s':'quantumshare:ExxonMobil' , 'p':'org:classification' , 'o':'quantumshare:energy_provider'}
+{'s':'quantumshare:ExxonMobil_Research_And_Engineering' , 'p':'rdfs:subClassOf' , 'o':'org:OrganizationalUnit'}
+{'s':'quantumshare:ExxonMobil_Research_And_Engineering' , 'p':'org:unitOf' , 'o':'quantumshare:ExxonMobil'}
+{'s':'quantumshare:ExxonMobil_Research_And_Engineering' , 'p':'org:hasSite' , 'o':'quantumshare:Annandale_NJ_08801_USA'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Execution'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'ProblemExecution:hasOrganization' , 'o':'quantumshare:ExxonMobil_Research_And_Engineering'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'ProblemExecution:hasOrganization' , 'o':'quantumshare:IBM'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'ProblemExecution:solvesProblem' , 'o':'quantumshare:Vehicle_Routing_With_Time_Windows'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'dul:realizes' , 'o':'quantumshare:Quantum_Approximate_Optimization'}
+{'s':'quantumshare:Mathematical_Formulations' , 'p':'rdfs:subClassOf' , 'o':'mls:Input'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'mls:hasInput' , 'o':'quantumshare:Mathematical_Formulations'}
+{'s':'quantumshare:Constraints' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Data'}
+{'s':'quantumshare:Mathematical_Formulations' , 'p':'dul:defines' , 'o':'quantumshare:Constraints'}
+{'s':'quantumshare:Routes_Traveled' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Data_Property'}
+{'s':'quantumshare:Feasible_Movements' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Data_Property'}
+{'s':'quantumshare:Order_Of_Visited_Locations' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Data_Property'}
+{'s':'quantumshare:Constraints', 'p':'dul:hasParameter' , 'o':'quantumshare:Routes_Traveled'}
+{'s':'quantumshare:Constraints', 'p':'dul:hasParameter' , 'o':'quantumshare:Feasible_Movements'}
+{'s':'quantumshare:Constraints', 'p':'dul:hasParameter' , 'o':'quantumshare:Order_Of_Visited_Locations'}
+{'s':'quantumshare:Parameter_Settings' , 'p':'rdfs:subClassOf' , 'o':'mls:Input'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'mls:hasInput' , 'o':'quantumshare:Parameter_Settings'}
+{'s':'quantumshare:Max_Number_Function_Evaluations' , 'p':'rdfs:subClassOf' , 'o':'dul:Parameter'}
+{'s':'quantumshare:Parameter_Settings' , 'p':'dul:hasParameter' , 'o':'quantumshare:Max_Number_Function_Evaluations'}
+{'s':'quantumshare:Max_Number_Function_Evaluations' , 'p':'dul:hasParameterDataValue' , 'o':1000}
+{'s':'quantumshare:Numerical_Experiments' , 'p':'rdfs:subClassOf' , 'o':'mls:Output'}
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'mls:hasOutput' , 'o':'quantumshare:Numerical_Experiments'}
+{'s':'quantumshare:Evaluation_Metrics' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Performance'}
+{'s':'quantumshare:Numerical_Experiments' , 'p':'dul:defines' , 'o':'quantumshare:Evaluation_Metrics'}
+{'s':'quantumshare:Probability_Of_Success' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Performance_Property'}
+{'s':'quantumshare:Probability_Of_Feasible_Solutions' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Performance_Property'}
+{'s':'quantumshare:Number_Of_Iterations' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Performance_Property'}
+{'s':'quantumshare:Number_Of_Qubits' , 'p':'rdfs:subClassOf' , 'o':'ProblemExecution:Performance_Property'}
+{'s':'quantumshare:Evaluation_Metrics' , 'p':'dul:hasParameter' , 'o':'quantumshare:Probability_Of_Success'}
+{'s':'quantumshare:Evaluation_Metrics' , 'p':'dul:hasParameter' , 'o':'quantumshare:Probability_Of_Feasible_Solutions'}
+{'s':'quantumshare:Evaluation_Metrics' , 'p':'dul:hasParameter' , 'o':'quantumshare:Number_Of_Iterations'}
+{'s':'quantumshare:Evaluation_Metrics' , 'p':'dul:hasParameter' , 'o':'quantumshare:Number_Of_Qubits'}
+{'s':'quantumshare:Number_Of_Qubits' , 'p':'dul:hasParameterDataValue' , 'o':16}
+{'s': 'quantumshare:431',  'p': 'dul:isAbout',  'o': 'quantumshare:QUBO_With_ADMM_Solver'}
+{'s': 'quantumshare:431',  'p': 'rdfs:subClassOf',  'o': 'Publication:Publication'}
+{'s': 'quantumshare:431',  'p': 'dul:hasParameter',  'o': 'quantumshare:authorsStuart_Harwood_Claudio_Gambella_Dimitar_Trenev_and_Andrea_Simonetto'}
+{'s': 'quantumshare:authorsStuart_Harwood_Claudio_Gambella_Dimitar_Trenev_and_Andrea_Simonetto',  'p': 'rdfs:subClassOf',  'o': 'Publication:Metadata'}
+{'s': 'quantumshare:authorsStuart_Harwood_Claudio_Gambella_Dimitar_Trenev_and_Andrea_Simonetto',  'p': 'dul:hasParameterDataValue',  'o': 'Stuart Harwood, Claudio Gambella, Dimitar Trenev, Andrea Simonetto, David Bernal, and Donny Greenberg'}
+{'s': 'quantumshare:titleExxonMobilIBM_Explore_Quantum_Algorithms',  'p': 'rdfs:subClassOf',  'o': 'Publication:Metadata'}
+{'s': 'quantumshare:431',  'p': 'dul:hasParameter',  'o': 'quantumshare:titleExxonMobilIBM_Explore_Quantum_Algorithms'}
+{'s': 'quantumshare:titleExxonMobilIBM_Explore_Quantum_Algorithms',  'p': 'dul:hasParameterDataValue',  'o': 'Formulating and Solving Routing Problems on Quantum Computers'}
+{'s': 'quantumshare:links101109TQE20213049230',  'p': 'rdfs:subClassOf',  'o': 'Publication:Metadata'}
+{'s': 'quantumshare:431',  'p': 'dul:hasParameter',  'o': 'quantumshare:links101109TQE20213049230'} 
+{'s': 'quantumshare:links101109TQE20213049230',  'p': 'dul:hasParameterDataValue',  'o': '10.1109/TQE.2021.3049230'} 

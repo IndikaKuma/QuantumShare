@@ -1,0 +1,81 @@
+{'s':'quantumshare:Qiskit' , 'p':'rdfs:subClassOf' , 'o':'<http://www.semanticweb.org/20173656/ontologies/2022/4/QuantumComputingV2#Quantum_Implementation>'}
+{'s':'quantumshare:IBM' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Implementer'}
+{'s':'quantumshare:Qiskit' , 'p':'Implementation:involvesOrganization' , 'o':'quantumshare:IBM'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'rdfs:subClassOf', 'o':'cs:Software'}
+{'s':'quantumshare:Qiskit' , 'p':'cs:usesSoftware' , 'o':'quantumshare:Qiskit_Software'}
+{'s':'quantumshare:First_Release' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Software_Property'}
+{'s':'quantumshare:License' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Software_Property'}
+{'s':'quantumshare:Version' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Software_Property'}
+{'s':'quantumshare:Operating_System' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Software_Property'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'dul:hasParameter' , 'o':'quantumshare:First_Release'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'dul:hasParameter' , 'o':'quantumshare:License'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'dul:hasParameter' , 'o':'quantumshare:Version'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'dul:hasParameter' , 'o':'quantumshare:Operating_System'}
+{'s':'quantumshare:First_Release' , 'p':'dul:hasParameterDataValue' , 'o':'0.1 on March 7, 2017'}
+{'s':'quantumshare:License' , 'p':'dul:hasParameterDataValue' , 'o':'Apache-2.0'}
+{'s':'quantumshare:Version' , 'p':'dul:hasParameterDataValue' , 'o':'0.5.4'}
+{'s':'quantumshare:Operating_System' , 'p':'dul:hasParameterDataValue' , 'o':'Mac'}
+{'s':'quantumshare:Operating_System' , 'p':'dul:hasParameterDataValue' , 'o':'Windows'}
+{'s':'quantumshare:Operating_System' , 'p':'dul:hasParameterDataValue' , 'o':'Linux'}
+{'s':'quantumshare:Qiskit_Language' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Quantum_Programming_Language'}
+{'s':'quantumshare:OpenQASM' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Assembly_Language'}
+{'s':'quantumshare:Python' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Syntax_Language'}
+{'s':'quantumshare:JavaScript' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Syntax_Language'}
+{'s':'quantumshare:Swift' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Syntax_Language'}
+{'s':'quantumshare:Qiskit_Language' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:Qiskit_Software'}
+{'s':'quantumshare:OpenQASM' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:Qiskit'}
+{'s':'quantumshare:Python' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:Qiskit'}
+{'s':'quantumshare:JavaScript' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:Qiskit'}
+{'s':'quantumshare:Swift' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:Qiskit'}
+{'s':'quantumshare:Qiskit_SDK' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Software_Development_Kit'}
+{'s':'quantumshare:Aqua' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Library'}
+{'s':'quantumshare:Aqua' , 'p':'dul:isPartOf' , 'o':'quantumshare:Qiskit_SDK'}
+{'s':'quantumshare:IBMQX5' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Quantum_Processing_Unit'}
+{'s':'quantumshare:Qiskit' , 'p':'cs:usesHardware' , 'o':'quantumshare:IBMQX5'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:IBMQX5'}
+{'s':'quantumshare:IBM' , 'p':'rdfs:subClassOf' , 'o':'Implementation:ResourceProvider'}
+{'s':'quantumshare:IBMQX5' , 'p':'Implementation:involvesOrganization' , 'o':'quantumshare:IBM'}
+{'s':'quantumshare:Number_Of_Qubits_Offered' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Resource_Property'}
+{'s':'quantumshare:Min_Coherence_Time' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Resource_Property'}
+{'s':'quantumshare:Max_Coherence_Time' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Resource_Property'}
+{'s':'quantumshare:Single_Qubit_Gate_Fidelity' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Resource_Property'}
+{'s':'quantumshare:Multi_Qubit_Gate_Fidelity' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Resource_Property'}
+{'s':'quantumshare:IBMQX5' , 'p':'dul:hasParameter' , 'o':'quantumshare:Number_Of_Qubits_Offered'}
+{'s':'quantumshare:Number_Of_Qubits_Offered' , 'p':'dul:hasParameterDataValue' , 'o':'16'}
+{'s':'quantumshare:IBMQX5' , 'p':'dul:hasParameter' , 'o':'quantumshare:Min_Coherence_Time'}
+{'s':'quantumshare:Min_Coherence_Time' ,'p':'dul:hasParameterDataValue' , 'o':'31'}
+{'s':'quantumshare:Min_Coherence_Time' ,'p':'dul:parametrizes' , 'o':'quantumshare:Duration'}
+{'s':'quantumshare:Duration' , 'p':'muo:measuredIn' , 'o':'quantumshare:Microseconds'}
+{'s':'quantumshare:IBMQX5' , 'p':'dul:hasParameter' , 'o':'quantumshare:Max_Coherence_Time'}
+{'s':'quantumshare:Max_Coherence_Time' ,'p':'dul:hasParameterDataValue' , 'o':'89'}
+{'s':'quantumshare:Max_Coherence_Time' ,'p':'dul:parametrizes' , 'o':'quantumshare:Duration'}
+{'s':'quantumshare:Duration' , 'p':'muo:measuredIn' , 'o':'quantumshare:Microseconds'}
+{'s':'quantumshare:IBMQX5' , 'p':'dul:hasParameter' , 'o':'quantumshare:Single_Qubit_Gate_Fidelity'}
+{'s':'quantumshare:Single_Qubit_Gate_Fidelity' ,'p':'dul:hasParameterDataValue' , 'o':'99.5'}
+{'s':'quantumshare:Single_Qubit_Gate_Fidelity' ,'p':'dul:parametrizes' , 'o':'quantumshare:Fraction'}
+{'s':'quantumshare:Fraction' , 'p':'muo:measuredIn' , 'o':'quantumshare:Percentage'}
+{'s':'quantumshare:IBMQX5' , 'p':'dul:hasParameter' , 'o':'quantumshare:Multi_Qubit_Gate_Fidelity'}
+{'s':'quantumshare:Multi_Qubit_Gate_Fidelity' ,'p':'dul:hasParameterDataValue' , 'o':'94.9'}
+{'s':'quantumshare:Multi_Qubit_Gate_Fidelity' ,'p':'dul:parametrizes' , 'o':'quantumshare:Fraction'}
+{'s':'quantumshare:Fraction' , 'p':'muo:measuredIn' , 'o':'quantumshare:Percentage'}
+{'s':'quantumshare:Local_Unitrary_Simulator' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Local_Quantum_Simulator'}
+{'s':'quantumshare:Qiskit' , 'p':'cs:usesHardware' , 'o':'quantumshare:Local_Unitrary_Simulator'}
+{'s':'quantumshare:Qiskit_Software' , 'p':'cs:isCompatibleWith' , 'o':'quantumshare:Local_Unitrary_Simulator'}
+{'s':'quantumshare:Local_Unitrary_Simulator' , 'p':'Implementation:involvesOrganization' , 'o':'quantumshare:IBM'}
+{'s':'quantumshare:Gate_Set' , 'p':'rdfs:subClassOf' , 'o':'Implementation:Resource_Property'}
+{'s':'quantumshare:Local_Unitrary_Simulator' , 'p':'dul:hasParameter' , 'o':'quantumshare:Gate_Set'}
+{'s':'quantumshare:Gate_Set' ,'p':'dul:hasParameterDataValue' , 'o':'10'}
+{'s':'quantumshare:Local_Unitrary_Simulator' , 'p':'dul:hasParameter' , 'o':'quantumshare:Number_Of_Qubits_Offered'}
+{'s':'quantumshare:Number_Of_Qubits_Offered' ,'p':'dul:hasParameterDataValue' , 'o':'10'}
+{'s': 'quantumshare:432',  'p': 'dul:isAbout',  'o': 'quantumshare:QUBO_With_ADMM_Solver'}
+{'s': 'quantumshare:432',  'p': 'rdfs:subClassOf',  'o': 'Publication:Publication'}
+{'s': 'quantumshare:432',  'p': 'dul:hasParameter',  'o': 'quantumshare:authorsRyanLarose'}
+{'s': 'quantumshare:authorsRyanLarose',  'p': 'rdfs:subClassOf',  'o': 'Publication:Metadata'}
+{'s': 'quantumshare:authorsRyanLarose',  'p': 'dul:hasParameterDataValue',  'o': 'Ryan Larose'}
+{'s': 'quantumshare:titleOverviewAndComparisonOfGateLevelQuantum',  'p': 'rdfs:subClassOf',  'o': 'Publication:Metadata'}
+{'s': 'quantumshare:432',  'p': 'dul:hasParameter',  'o': 'quantumshare:titleOverviewAndComparisonOfGateLevelQuantum'}
+{'s': 'quantumshare:titleOverviewAndComparisonOfGateLevelQuantum',  'p': 'dul:hasParameterDataValue',  'o': 'Overview and Comparison of Gate Level Quantum Software Platforms'}
+{'s': 'quantumshare:links1022331q20190325130',  'p': 'rdfs:subClassOf',  'o': 'Publication:Metadata'}
+{'s': 'quantumshare:432',  'p': 'dul:hasParameter',  'o': 'quantumshare:links1022331q20190325130'} 
+{'s': 'quantumshare:links1022331q20190325130',  'p': 'dul:hasParameterDataValue',  'o': '10.22331/q-2019-03-25-130'} 
+{'s':'quantumshare:QUBO_With_ADMM_Solver' , 'p':'dul:isPartOf' , 'o':'quantumshare:Qiskit'}

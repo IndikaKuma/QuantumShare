@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#"
+     xml:base="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization">
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
+        <rdfs:comment>Representing an organization, or part of an organization, and the concepts that identify this organization.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Intent -->
+
+    <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Intent">
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-06-11T13:11:35Z</dc:date>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/org#classification -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#classification">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#Concept"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:comment xml:lang="it">Indica una classificazione per questa Organization all&apos;interno di un qualche schema di classificazione. Alcuni vocabolari potrebbero voler specializzare questa proprietà per avere un codominio corrispondente a uno specifico `skos:ConceptScheme`. Si noti che la presenza di questa proprietà è ancora in fase di discussione e potrebbe  essere revisionata o rimossa.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates a classification for this Organization within some classification scheme. Extension vocabularies may wish to specialize this property to have a range corresponding to a specific `skos:ConceptScheme`. This property is under discussion and may be revised or removed - in many cases organizations are best categorized by defining a sub-class hierarchy in an extension vocabulary.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Indique une classification pour cette Organisation dans le cadre d&apos;un schéma de classification. Il est possible de spécialiser cette propriété en utilisant un vocabulaire spécialisé pour que le champ corresponde à un concept spécifique `skos:ConceptScheme`. Cette propriété est en discussion est pourrait être révisée ou supprimée - dans de nombreux cas, les organisations sont mieux catégorisées par une hiérarchie de sous-classe dans un vocabulaire externe.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Ordenación jerárquica que se hace de una organización dentro de un esquema de clasificación. Es posible que algunos vocabularios especifiquen esta propiedad de forma que el rango se corresponda con un `skos:ConceptScheme` específico. La conveniencia de incluir esta propiedad se está debatiendo y puede que se revise o elimine (en muchos casos las organizaciones se clasifican mejor si se define una jerarquía de subclases en un vocabulario aparte)</rdfs:comment>
+        <rdfs:comment xml:lang="ja">ある分類表内のこの組織に対する分類を示します。
+アプリケーションがorg:Organizationのサブクラスを組織的なカテゴリーを表わす手段として定義することも許容されることに注意してください。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="en">classification</rdfs:label>
+        <rdfs:label xml:lang="fr">classification</rdfs:label>
+        <rdfs:label xml:lang="it">classificazione</rdfs:label>
+        <rdfs:label xml:lang="es">pertenece a la clasificación</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#hasSite -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#hasSite">
+        <owl:inverseOf rdf:resource="http://www.w3.org/ns/org#siteOf"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#Site"/>
+        <rdfs:comment xml:lang="it">Indica la sede in cui l&apos;Organization ha una qualche presenza anche in modo indiretto (ad esempio un ufficio virtuale). È l&apos;inverso di `org:siteOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates a site at which the Organization has some presence even if only indirect (e.g. virtual office or a professional service which is acting as the registered address for a company). Inverse of `org:siteOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Indique un site sur lequel l&apos;Organisation possède une présence, même indirecte (domiciliation, boite postale). Inverse de `org:siteOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Lugar en donde la organización tiene algún tipo de presencia, incluso si es de forma indirecta (por ejemplo, una oficina virtual o servicio profesional que hagan la función de dirección registrada de la compañía). Es la relación inversa de `org:siteOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">組織が、間接（例えば、会社の登録住所として機能しているバーチャル・オフィスやプロフェッショナル・サービス）のみであったとしても、ある存在感を持っているサイトを示します。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="fr">a un site</rdfs:label>
+        <rdfs:label xml:lang="it">ha sede</rdfs:label>
+        <rdfs:label xml:lang="en">has site</rdfs:label>
+        <rdfs:label xml:lang="es">tiene sede en</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#hasUnit -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#hasUnit">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.w3.org/ns/org#unitOf"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#OrganizationalUnit"/>
+        <rdfs:comment xml:lang="it">Indica un&apos;unità che è parte di questa Organization, come ad esempio un dipartimento facente parte di una più ampia FormalOrganization. È l&apos;inverso di `org:unitOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates a unit which is part of this Organization, e.g. a Department within a larger FormalOrganization. Inverse of `org:unitOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Indique une Unité qui fait partie d&apos;une Organisation, par exemple un Départment au sein d&apos;une Organisation Formelle plus large. Inverse de `org:unitOf`.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Unidad que es parte de la organización, como, por ejemplo, un departamento incluido en una organización formal más amplia.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">例えば、より大きな組織内の部局など、この組織の一部である単位を示します。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="es">contiene unidad</rdfs:label>
+        <rdfs:label xml:lang="it">ha Unit</rdfs:label>
+        <rdfs:label xml:lang="en">has Unit</rdfs:label>
+        <rdfs:label xml:lang="fr">possède une Unité</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#siteOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#siteOf">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Site"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:comment xml:lang="it">Indica un&apos;Organization che ha una qualche presenza nella data sede. È l&apos;inverso di `org:hasSite`.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates an Organization which has some presence at the given site. This is the inverse of `org:hasSite`.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Indique une Organisation qui a une présence sur le site en question. Inverse de `org:hasSite`.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Organización que tiene ubicación en un lugar. Es la relación inversa de `org:hasSite`.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">あるサイトである存在感を持っている組織を示します。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="es">es sede de</rdfs:label>
+        <rdfs:label xml:lang="it">sede di</rdfs:label>
+        <rdfs:label xml:lang="en">site Of</rdfs:label>
+        <rdfs:label xml:lang="fr">site de</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#unitOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#unitOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#OrganizationalUnit"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:comment xml:lang="it">Indica un Organization di cui questa Unit fa parte, come ad esempio un dipartimento all&apos;interno di una più vasta FormalOrganization. È l&apos;inverso di `org:hasUnit`.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates an Organization of which this Unit is a part, e.g. a Department within a larger FormalOrganization. This is the inverse of `org:hasUnit`.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Indique l&apos;Organisation dont cette Organisation ou Unité fait partie, par exemple un Départment au sein d&apos;une Organisation Formelle plus large. Inverse de `org:hasUnit`.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Organización de la que es parte esta unidad, por ejemplo, un departamento incluido en una organización formal más amplia.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">例えば、より大きな組織内の部局など、この単位がその一部分である組織を示します。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="es">es unidad de</rdfs:label>
+        <rdfs:label xml:lang="en">unit Of</rdfs:label>
+        <rdfs:label xml:lang="it">unità di</rdfs:label>
+        <rdfs:label xml:lang="fr">unité de</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-06-11T09:27:27Z</dc:date>
+        <rdfs:comment>The application area of the organization. The core operations of the organization.</rdfs:comment>
+        <rdfs:label>Classification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
+
+    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
+        <rdfs:comment>The class skos:Concept is the class of SKOS concepts.
+
+A SKOS concept can be viewed as an idea or notion; a unit of thought. However, what constitutes a unit of thought is subjective, and this definition is meant to be suggestive, rather than restrictive.
+
+The notion of a SKOS concept is useful when describing the conceptual or intellectual structure of a knowledge organization system, and when referring to specific ideas or meanings established within a KOS.
+
+Note that, because SKOS is designed to be a vehicle for representing semi-formal KOS, such as thesauri and classification schemes, a certain amount of flexibility has been built in to the formal definition of this class.</rdfs:comment>
+        <rdfs:label>Concept</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/org#FormalOrganization -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#FormalOrganization">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:comment xml:lang="en">An Organization which is recognized in the world at large, in particular in legal jurisdictions, with associated rights and responsibilities. Examples include a Corporation, Charity, Government or Church. Note that this is a super class of `gr:BusinessEntity` and it is recommended to use the GoodRelations vocabulary to denote Business classifications such as DUNS or NAICS.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Organización reconocida a nivel mundial, en particular en jurisdicciones legales, con derechos y responsabilidades asociadas. Algunos ejemplos son: organización corporativa, organización benéfica, organización gubernamental, organización religiosa. Se debe tener en cuenta que ésta es una superclase de `gr:BusinessEntity` y que se recomienda el uso del vocabulario GoodRelations para referirse a clasificaciones de negocios tales como DUNS o NAICS.</rdfs:comment>
+        <rdfs:comment xml:lang="it">Un&apos;organizzazione che è riconosciuta a livello mondiale o, in generale, all&apos;interno di una qualche giurisdizione, e che quindi possiede diritti e responsabilità. Ad esempio aziende, enti governativi, associazioni di volontariato. Si noti che questa è una superclasse di `gr:BusinessEntity` e che quindi è raccomandabile usare il vocabolario GoodRelations per esprimere classificazioni di tipo industriale e commerciale come DUNS e NAICS.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Une Organisation reconnue, en particulier par les juridictions locales, ayant des droits et des responsabilités. Exemples : entreprises, association à but non-lucratif, collectivité, église. Notez que c&apos;est une super-classe de `gr:BusinessEntity` et qu&apos;il est recommandé d&apos;utiliser le vocabulaire GoodRelations pour indiquer les classifications économiques comme le code NACE.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">関連する権利と責任を有する（特に法的管轄区域において）世界中に広く認識されている組織。例には、企業、慈善団体、政府や教会が含まれます。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="en">Formal Organization</rdfs:label>
+        <rdfs:label xml:lang="fr">Organisation Formelle</rdfs:label>
+        <rdfs:label xml:lang="it">Organizzazione formale</rdfs:label>
+        <rdfs:label xml:lang="es">organización formal</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/org#Organization -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#Organization">
+        <owl:disjointWith rdf:resource="http://www.w3.org/ns/org#Site"/>
+        <rdfs:comment xml:lang="es">Grupo de personas que se organiza en una comunidad u otro tipo de estructura social, comercial o política. Dicho grupo tiene un objetivo o motivo común para su existencia que va más allá del conjunto de personas que lo forman y que puede actuar como “agente”. A menudo las organizaciones se pueden agrupar en estructuras jerárquicas. Se recomienda el uso de etiquetas de SKOS para denominar a cada “organización”. En concreto, `skos:prefLabel` para la denominación principal o recomendada (aquella reconocida legalmente, siempre que sea posible), `skos:altLabel` para denominaciones alternativas (nombre comercial, sigla, denominación por la que se conoce a la organización coloquialmente) y `skos:notation` para referirse al código que identifique a la organización en una lista de códigos. Denominaciones alternativas: _colectivo_ _corporación_ _grupo_</rdfs:comment>
+        <rdfs:comment xml:lang="it">Rappresenta una collezione di persone organizzate all&apos;interno di una communità o di una qualche struttura sociale, commerciale o politica. Il gruppo condivide un obiettivo o una ragione d&apos;essere che va oltre gli stessi membri appartenenti al gruppo e  può agire come un Agent. Le organizzazioni si possono spesso suddividere in strutture gerarchiche. Si raccomanda di usare le label per l&apos;Organization mediante le proprietà di SKOS. In particolare, `skos:prefLabel` per il nome principale (possibilmente un nome legalmente riconosciuto)”, `skos:altLabel` come nome alternativo (denominazione commerciale, denominazione colloquiale) e `skos:notation` per indicare un codice di una lista di codici.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Represents a collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it and can act as an Agent. Organizations are often decomposable into hierarchical structures.  It is recommended that SKOS lexical labels should be used to label the Organization. In particular `skos:prefLabel` for the primary (possibly legally recognized name), `skos:altLabel` for alternative names (trading names, colloquial names) and `skos:notation` to denote a code from a code list. Alternative names: _Collective_ _Body_ _Org_ _Group_</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Représente un groupe de personnes organisées en communauté où tout autre forme de structure sociale, commerciale ou politique. Le groupe a un but commun ou une raison d&apos;être qui va au-delà de la somme des personnes qui en font partie et peut agir en tant que &quot;Agent&quot;. Les organisations sont souvent décomposables en structures hiérarchisées. Il est recommandé que des labels lexicaux SKOS soient utilisés pour nommer l&apos;Organisation. En particulier `skos:prefLabel` pour le nom principal (en général le nom légal), `skos:altLabel` pour les noms alternatifs (marques, sigles, appellations familières) et `skos:notation` pour indiquer un code provenant d&apos;une liste de code.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">コミュニティー、その他の社会、商業、政治的な構造に共に編入された人々の集合を表わします。グループには、そこに属する人々を超えた、存在に対するある共通の目的や理由があり、エージェント（代理）を務めることができます。組織は、多くの場合、階層構造に分割できます。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="fr">Organisation</rdfs:label>
+        <rdfs:label xml:lang="en">Organization</rdfs:label>
+        <rdfs:label xml:lang="it">Organizzazione</rdfs:label>
+        <rdfs:label xml:lang="es">organización</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/org#OrganizationalUnit -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#OrganizationalUnit">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Organization"/>
+        <rdfs:comment xml:lang="en">An Organization such as a University Support Unit which is part of some larger FormalOrganization and only has full recognition within the context of that FormalOrganization, it is not a Legal Entity in its own right. Units can be large and complex containing other Units and even FormalOrganizations. Alternative names: _OU_ _Unit_ _Department_</rdfs:comment>
+        <rdfs:comment xml:lang="es">Organización que forma parte de una organización formal más amplia, como el servicio de informática o centro de cálculo de una universidad, y que sólo tiene reconocimiento pleno en el contexto de dicha organización formal, pero que no es una entidad legal propiamente dicha. Estas unidades pueden ser amplias y complejas, e incluir a otras unidades o incluso a otras organizaciones formales. Denominaciones alternativas: departamento.</rdfs:comment>
+        <rdfs:comment xml:lang="it">Un&apos;organizzazione come ad esempio l&apos;unità dei sistemi informativi che è parte di una più grande FormalOrganization e che, pur essendo riconosciuta nel contesto della propria organizzazione di riferimento, non è legalmente riconosciuta come entità a sé stante. Le unità possono essere ampie e complesse e contenere al loro interno sia altre unità che addirittura FormalOrganization.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Une organisation telle que le support informatique d&apos;une université, qui fait partie d&apos;une Organisation Formelle plus importante et qui ne peut être reconnue qu&apos;en tant que membre de cette organisation supérieure, ce n&apos;est pas une entité légale en elle-même. Les unités opérationnelles peuvent être étendues, complexes et inclure elles-mêmes d&apos;autres branches ou Unités Opérationnelles, voire des Organisations Formelles.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">あるより大きな組織の一部であり、その組織の中においてのみ完全に認識される部局や支援部署などの組織です。特に、その単位はそれ自体では法的実体と見なされません。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="en">OrganizationalUnit</rdfs:label>
+        <rdfs:label xml:lang="it">Unità Organizzativa</rdfs:label>
+        <rdfs:label xml:lang="fr">Unité opérationnelle</rdfs:label>
+        <rdfs:label xml:lang="es">unidad organizativa</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/org#Site -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#Site">
+        <rdfs:comment xml:lang="en">An office or other premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations. In most cases a Site will be a physical location. However, we don&apos;t exclude the possibility of non-physical sites such as a virtual office with an associated post box and phone reception service. Extensions may provide subclasses to denote particular types of site.</rdfs:comment>
+        <rdfs:comment xml:lang="es">Oficina, local o cualquier otro lugar en el que se encuentra una organización. Muchas organizaciones están distribuidas en varias sedes, que a su vez están repartidas en distintas ubicaciones. En muchos casos una sede será un sitio o local físico. Sin embargo, no se excluye la posibilidad de lugares no físicos como oficinas virtuales con los correspondientes apartados de correo y servicio de atención telefónica. Se pueden añadir más subtipos mediante extensiones para incluir tipos especiales de lugares.</rdfs:comment>
+        <rdfs:comment xml:lang="it">Un ufficio o altra sede dovei l&apos;organizzazione è situata. Molte organizzazione sono distribuite su più sedi e molte sedi ospitano più ubicazioni. Nella maggior parte dei casi un Site è una locazione fisica. Non si esclude la possibilità di indicare sedi non fisiche come ad esempio gli uffici virtuali. Le estensioni dell&apos;ontologia potrebbero usare delle sottoclassi per rappresentare i tipi particolari di sede.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Un établissement ou tout autre lieu dans lequel une Organisation est localisé. Beaucoup d&apos;organisations sont dispersées à travers plusieurs sites. Dans la plupart des cas un Site sera un lieu physique. Toutefois, nous n&apos;excluons pas la possibilité de sites non-physiques comme un bureau virtuel avec une boîte postale et un service de secrétariat mutualisé. Des extensions pourraient fournir des sous-classes pour décrire des types de sites particuliers.</rdfs:comment>
+        <rdfs:comment xml:lang="ja">組織が位置するオフィスやその他の敷地。多くの組織が複数のサイトに散在しており、多くのサイトが多数の場所を持つでしょう。</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/org"/>
+        <rdfs:label xml:lang="it">Sede</rdfs:label>
+        <rdfs:label xml:lang="en">Site</rdfs:label>
+        <rdfs:label xml:lang="fr">Site</rdfs:label>
+        <rdfs:label xml:lang="es">sede</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
