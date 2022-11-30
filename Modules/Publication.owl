@@ -208,6 +208,22 @@ Ordering on subparameters can be created by using or specializing the object pro
     
 
 
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Author -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Author">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Link -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Link">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata">
@@ -224,6 +240,22 @@ Ordering on subparameters can be created by using or specializing the object pro
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-06-11T12:03:38Z</dc:date>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#PublishedDate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#PublishedDate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Title -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Title">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Publication#Metadata"/>
     </owl:Class>
 </rdf:RDF>
 
