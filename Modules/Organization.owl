@@ -6,8 +6,11 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization">
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
         <rdfs:comment>Representing an organization, or part of an organization, and the concepts that identify this organization.</rdfs:comment>
     </owl:Ontology>
@@ -184,6 +187,54 @@
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-06-11T09:27:27Z</dc:date>
         <rdfs:comment>The application area of the organization. The core operations of the organization.</rdfs:comment>
         <rdfs:label>Classification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumAdopter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumAdopter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumConsultancy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumConsultancy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumEducation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumEducation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumResearch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumResearch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumResourceProvider -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumResourceProvider">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumSoftwareDevelopment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#QuantumSoftwareDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Organization#Classification"/>
     </owl:Class>
     
 

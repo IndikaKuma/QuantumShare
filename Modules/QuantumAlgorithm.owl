@@ -7,7 +7,10 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm"/>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm">
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/Parameter"/>
+    </owl:Ontology>
     
 
 
@@ -214,6 +217,22 @@ A collection is neither an aggregate of its member entities (see e.g. ObjectAggr
     
 
 
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitParameter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitParameter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitProperty -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitProperty">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Computational_Model -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Computational_Model">
@@ -225,12 +244,92 @@ A collection is neither an aggregate of its member entities (see e.g. ObjectAggr
     
 
 
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Exponential -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Exponential">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Speedup_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Factoring -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Factoring">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Algorithm_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#ML -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#ML">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Algorithm_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#NoOfClassicalBits -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#NoOfClassicalBits">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#NoOfQubits -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#NoOfQubits">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#CircuitProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Optimization -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Optimization">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Algorithm_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Polynomial -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Polynomial">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Speedup_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum-Classical -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum-Classical">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Algorithm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#QuantumCircuit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#QuantumCircuit">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Algorithm -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Algorithm">
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-06-11T13:39:15Z</dc:date>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Only -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Only">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Quantum_Algorithm"/>
     </owl:Class>
     
 
@@ -251,6 +350,14 @@ A collection is neither an aggregate of its member entities (see e.g. ObjectAggr
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Collection"/>
         <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J.P.A. Martens</dc:creator>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-06-11T13:39:46Z</dc:date>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Superpolynomial -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Superpolynomial">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Speedup_Class"/>
     </owl:Class>
     
 
