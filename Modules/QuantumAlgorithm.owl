@@ -171,6 +171,16 @@ The intuition for &apos;meaning&apos; is intended to be very broad. A separate, 
     
 
 
+    <!-- http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#hasCircuit -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#hasCircuit">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#Universal_Computational_Model"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/20173656/ontologies/2022/5/QuantumAlgorithm#QuantumCircuit"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
